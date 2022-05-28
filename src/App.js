@@ -6,18 +6,20 @@ import Signup from "./container/Signup/Signup";
 import Signing from "./container/Signing/Signing";
 import PrivateRoute from "./components/HOC/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
-import { isUserLoggedIn } from "./action";
+import { getInitialData, isUserLoggedIn } from "./action";
 import Products from "./container/Products/Products";
 import Orders from "./container/Orders/Orders";
 import Category from "./container/Category/Category";
 const App = () => {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-
   useEffect(() => {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
     }
+  }, []);
+  useEffect(() => {
+    dispatch(getInitialData());
   }, []);
   return (
     <div>

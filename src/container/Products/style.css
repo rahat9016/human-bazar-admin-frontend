@@ -1,0 +1,20 @@
+.key {
+  font-size: 10;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+.value {
+  font-size: 12;
+  font-family: sans-serif;
+}
+.productImgContainer {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  text-align: center;
+}
+.productImgContainer > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
