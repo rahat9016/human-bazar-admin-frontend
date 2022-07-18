@@ -10,17 +10,22 @@ import { getInitialData, isUserLoggedIn } from "./action";
 import Products from "./container/Products/Products";
 import Orders from "./container/Orders/Orders";
 import Category from "./container/Category/Category";
+import Page from "./container/Page/Page";
 const App = () => {
   const auth = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
   useEffect(() => {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
     }
-  }, []);
-  useEffect(() => {
-    dispatch(getInitialData());
-  }, []);
+    if (auth.authenticate) {
+      dispatch(getInitialData());
+    }
+  }, [auth.authenticate]);
+  // useEffect(() => {
+  //   dispatch(getInitialData());
+  // }, []);
   return (
     <div>
       <Routes>
@@ -45,6 +50,14 @@ const App = () => {
           element={
             <PrivateRoute>
               <Orders />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/page"
+          element={
+            <PrivateRoute>
+              <Page />
             </PrivateRoute>
           }
         />

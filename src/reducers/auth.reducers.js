@@ -43,6 +43,7 @@ export default (state = initialState, action) => {
     case authConstants.LOGOUT_SUCCESS: {
       state = {
         ...initialState,
+        loading: false,
       };
       break;
     }

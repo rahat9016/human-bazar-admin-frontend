@@ -5,7 +5,6 @@ const initState = {
 };
 
 export default (state = initState, action) => {
-  console.log(action);
   switch (action.type) {
     case productConstance.GET_ALL_PRODUCT_SUCCESS: {
       state = {
@@ -14,6 +13,8 @@ export default (state = initState, action) => {
       };
       break;
     }
+    default:
+      return state;
   }
   return state;
 };

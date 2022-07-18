@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout";
-import { Container, Row, Table, Col, Modal } from "react-bootstrap";
+import { Container, Row, Table, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "../../components/Ui/Input/Input";
 import { addProduct } from "../../action/product.action";
@@ -132,7 +132,6 @@ const Products = () => {
   const showProductDetailsModal = (product) => {
     setProductDetails(product);
     setProductDetailModal(true);
-    console.log(product);
   };
   const renderProductDetailModal = () => {
     if (!productDetails) return null;
@@ -168,17 +167,23 @@ const Products = () => {
         <Row>
           <Col md="12">
             <label className="key">Description</label>
-            <p className="value">${productDetails.description}</p>
+            <p className="value">
+              {productDetails.description ? (
+                productDetails.description
+              ) : (
+                <p>NA</p>
+              )}
+            </p>
           </Col>
         </Row>
         <Row>
           <Col>
             <label className="key">Product Picture</label>
             <div style={{ display: "flex" }}>
-              {productDetails.productPictures.map((picture) => {
+              {productDetails.productPictures.map((picture, index) => {
                 return (
-                  <div className="productImgContainer">
-                    <img src={generatePublicUrl(picture.img)} />
+                  <div key={index} className="productImgContainer">
+                    <img src={generatePublicUrl(picture.img)} alt="" />
                   </div>
                 );
               })}
