@@ -33,6 +33,7 @@ const Products = () => {
     }
 
     dispatch(addProduct(form));
+    console.log(addProduct(form));
     setShow(false);
   };
   //Create category list
