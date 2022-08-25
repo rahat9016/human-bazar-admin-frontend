@@ -69,7 +69,6 @@ const Category = () => {
           category.children.length > 0 && renderCategories(category.children),
       });
     }
-    console.log(myCategories);
     return myCategories;
   };
   //Create category list

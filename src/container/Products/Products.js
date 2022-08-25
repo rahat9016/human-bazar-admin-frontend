@@ -22,6 +22,9 @@ const Products = () => {
   const product = useSelector((state) => state.product);
   const handleShow = () => setShow(true);
   const handleClose = () => {
+    setShow(false);
+  };
+  const submitProductForm = () => {
     const form = new FormData();
     form.append("name", name);
     form.append("quantity", quantity);
@@ -31,10 +34,9 @@ const Products = () => {
     for (let pic of productPictures) {
       form.append("productPicture", pic);
     }
-
-    dispatch(addProduct(form));
-    console.log(addProduct(form));
-    setShow(false);
+    dispatch(addProduct(form)).then(() => {
+      setShow(false);
+    });
   };
   //Create category list
   const createCategoryList = (categories, options = []) => {
@@ -77,7 +79,12 @@ const Products = () => {
     </Table>
   );
   const renderAddProductModal = () => (
-    <NewModal show={show} handleClose={handleClose} modalTitle={`Add Product`}>
+    <NewModal
+      show={show}
+      handleClose={handleClose}
+      modalTitle={`Add Product`}
+      onSubmit={submitProductForm}
+    >
       <Input
         label="Name"
         value={name}
